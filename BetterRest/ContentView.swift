@@ -29,8 +29,9 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             Form {
-                VStack(alignment: .leading, spacing: 0) {
-                    
+                //MARK: - Challenge - BetterRest - 1. Replace each VStack in our form with a Section, where the text view is the title of the section. Do you prefer this layout or the VStack layout? It’s your app – you choose!
+//                VStack(alignment: .leading, spacing: 0) {
+                Section("Enter the time you want to wake up at.") {
                     Text("Where do you want to wake up?")
                         .font(.headline)
                     DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute)
@@ -38,15 +39,16 @@ struct ContentView: View {
                     
                 }
                 
-                VStack(alignment: .leading, spacing: 0) {
-                    
+//                VStack(alignment: .leading, spacing: 0) {
+                Section("Enter how long you want to sleep.") {
                         Text("Desired amount of sleep")
                             .font(.headline)
                         Stepper("\(sleepAmount.formatted()) hours", value: $sleepAmount, in: 0...24, step: 0.10)
                         
                 }
                 
-                VStack(alignment: .leading, spacing: 0) {
+//                VStack(alignment: .leading, spacing: 0) {
+                Section("Enter how much coffee you drink during the day") {
                     Text("Daily coffee intake")
                         .font(.headline)
                     //Stepper("\(coffeeAmount) cup's", value: $coffeeAmount, in: 0...20, step: 1)
