@@ -57,9 +57,9 @@ struct ContentView: View {
 //                }
                 //MARK: - Challenge - BetterRest - 2. Replace the “Number of cups” stepper with a Picker showing the same range of values.
                 Section("Enter how much you drink coffee during the day") {
-                    Picker("Coffee amount", selection: $coffeeAmount) {
+                    Picker("Number of cup's", selection: $coffeeAmount) {
                         ForEach(0..<10) {
-                            Text("Cup \($0)")
+                            Text("\($0)")
                         }
                     }
                     .pickerStyle(.navigationLink)
