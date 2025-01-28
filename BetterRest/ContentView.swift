@@ -48,12 +48,21 @@ struct ContentView: View {
                 }
                 
 //                VStack(alignment: .leading, spacing: 0) {
-                Section("Enter how much coffee you drink during the day") {
-                    Text("Daily coffee intake")
-                        .font(.headline)
-                    //Stepper("\(coffeeAmount) cup's", value: $coffeeAmount, in: 0...20, step: 1)
-                    //Stepper(coffeeAmount == 1 ? "1 cup" : "\(coffeeAmount) cups",  value: $coffeeAmount, in: 1...20)
-                    Stepper("^[\(coffeeAmount) cup](inflect: true)", value: $coffeeAmount, in: 1...20)
+//                Section("Enter how much coffee you drink during the day") {
+//                    Text("Daily coffee intake")
+//                        .font(.headline)
+//                    //Stepper("\(coffeeAmount) cup's", value: $coffeeAmount, in: 0...20, step: 1)
+//                    //Stepper(coffeeAmount == 1 ? "1 cup" : "\(coffeeAmount) cups",  value: $coffeeAmount, in: 1...20)
+//                    Stepper("^[\(coffeeAmount) cup](inflect: true)", value: $coffeeAmount, in: 1...20)
+//                }
+                //MARK: - Challenge - BetterRest - 2. Replace the “Number of cups” stepper with a Picker showing the same range of values.
+                Section("Enter how much you drink coffee during the day") {
+                    Picker("Coffee amount", selection: $coffeeAmount) {
+                        ForEach(0..<10) {
+                            Text("Cup \($0)")
+                        }
+                    }
+                    .pickerStyle(.navigationLink)
                 }
             }
             .navigationTitle("Better Rest")
