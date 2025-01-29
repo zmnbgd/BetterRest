@@ -57,27 +57,32 @@ struct ContentView: View {
 //                }
                 //MARK: - Challenge - BetterRest - 2. Replace the “Number of cups” stepper with a Picker showing the same range of values.
                 Section("Enter how much you drink coffee during the day") {
-                    Picker("Number of cup's", selection: $coffeeAmount) {
+                    Picker(coffeeAmount == 1 ? "1 cup" : "\(coffeeAmount) cups", selection: $coffeeAmount) {
                         ForEach(0..<10) {
                             Text("\($0)")
                         }
                     }
                     .pickerStyle(.navigationLink)
                 }
+                //MARK: - Challenge - BetterRest - 3. Change the user interface so that it always shows their recommended bedtime using a nice and large font. You should be able to remove the “Calculate” button entirely.
+                Section("Recommended bedtime") {
+                    Text("Your bed time is \(calculateBedTime)")
+                }
             }
             .navigationTitle("Better Rest")
-            .toolbar {
-                Button("Calculate", action: calculateBedTime)
-            }
-            .alert(alertTitle, isPresented: $showAlert) {
-                Button("Ok") {}
-            } message: {
-                Text(alertMessage)
-            }
+//            .toolbar {
+//                Button("Calculate", action: calculateBedTime)
+//            }
+//            .alert(alertTitle, isPresented: $showAlert) {
+//                Button("Ok") {}
+//            } message: {
+//                Text(alertMessage)
+//            }
         }
     }
     
-    func calculateBedTime() {
+//    func calculateBedTime() {
+    var calculateBedTime: String {
         do {
             let config = MLModelConfiguration()
             
@@ -94,13 +99,13 @@ struct ContentView: View {
             
             let sleepTime = wakeUp - prediction.actualSleep
             
-            alertTitle = "Your ideal bedtime is ... "
-            alertMessage = sleepTime.formatted(date: .omitted, time: .shortened)
+//            alertTitle = "Your ideal bedtime is ... "
+            return sleepTime.formatted(date: .omitted, time: .shortened)
         } catch {
-            alertTitle = "Error"
-            alertMessage = "Sorry, there was a problem calculating your bedtime."
+//            alertTitle = "Error"
+            return "Sorry, there was a problem calculating your bedtime."
         }
-        showAlert = true
+//        showAlert = true
     }
     
 }
